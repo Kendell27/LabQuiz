@@ -100,9 +100,11 @@ create or replace function retornaestudiante(cod int) returns setof estudiante a
 	return query select *from estudiante where id = cod;
  end; $$ language 'plpgsql';
 
+
 select addestudiante(2005, 'Maria', 'Diaz Bonilla', 21); 
 select addestudiante(2003, 'Alexis', 'Mendez Lobo', 23);
 select addestudiante(2004, 'Alvaro', 'Mendez Ramirez', 18);
+select *from retornaestudiante(2005);
 
 ---------------------------relacion curso estudiante--------------------------------
 
@@ -136,9 +138,26 @@ create or replace function deleteestudiante_curso(cod int) returns void as $$
 create or replace function retornaestudiante_curso(cod int) returns setof estudiante_curso as 
  $$
  begin
-	return query select *from estudiante_curso where id = cod;
+	return query select *from estudiante_curso where estudiante = cod;
  end; $$ language 'plpgsql'; 
 
-
+select *from retornaestudiante_curso(2003);
 select addestudiante_curso(0, 2005,2001);
 select addestudiante_curso(0, 2005,2002);
+select addestudiante_curso(0, 2003,2002);
+
+
+---------------------JOINS------------------------
+
+create or replace function cursosporcedula(cod int) returns setof curso as $$
+ declare
+  r curso%rowtype;
+ begin
+	for r in select curso.id, curso.descripcion, curso.creditos 
+		from curso, estudiante_curso
+		where estudiante_curso.curso = curso.id 
+		and estudiante_curso.estudiante = cod
+	loop
+		return next r;
+	end loop;
+ end; $$ language 'plpgsql' 
