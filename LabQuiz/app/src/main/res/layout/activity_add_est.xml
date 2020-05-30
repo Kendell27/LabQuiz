@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/gridLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_row="7"
+    android:layout_column="2"
+    android:layout_gravity="center"
+    android:layout_margin="2.5dp"
+    android:background="#D4F8D7"
+    android:scrollbars="vertical"
+    tools:context=".Activity.AddEstActivity">
+
+    <TextView
+        android:id="@+id/TVTitulo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_row="0"
+        android:layout_column="0"
+        android:layout_columnSpan="2"
+        android:gravity="center"
+        android:textSize="35sp"
+        android:textColor="#DC8C15"
+        android:layout_margin="10dp"
+        android:text="Ingreso de un Estudiante" />
+
+    <TextView
+        android:id="@+id/TVId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_row="1"
+        android:layout_column="0"
+        android:gravity="center"
+        android:textSize="15sp"
+        android:textColor="#000000"
+        android:layout_margin="10dp"
+        android:text="Identificación" />
+
+    <EditText
+        android:id="@+id/ETId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_row="1"
+        android:layout_column="1"
+        android:layout_margin="5dp"
+        android:textSize="15dp"
+        android:textColor="#000000"
+        android:hint="Ingrese el numero de cedula"
+        />
+
+    <TextView
+        android:id="@+id/TVNombre"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_row="2"
+        android:layout_column="0"
+        android:gravity="center"
+        android:textSize="15sp"
+        android:textColor="#000000"
+        android:layout_margin="10dp"
+        android:text="Nombre" />
+
+    <EditText
+        android:id="@+id/ETNombre"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_row="2"
+        android:layout_column="1"
+        android:layout_margin="5dp"
+        android:textSize="15dp"
+        android:textColor="#000000"
+        android:hint="Ingrese el nombre"
+        />
+
+    <TextView
+        android:id="@+id/TVApellidos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_row="3"
+        android:layout_column="0"
+        android:gravity="center"
+        android:textSize="15sp"
+        android:textColor="#000000"
+        android:layout_margin="10dp"
+        android:text="Apellidos" />
+
+    <EditText
+        android:id="@+id/ETApellidos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_row="3"
+        android:layout_column="1"
+        android:layout_margin="5dp"
+        android:textSize="15dp"
+        android:textColor="#000000"
+        android:hint="Ingrese los apellidos"
+        />
+
+    <TextView
+        android:id="@+id/TVEdad"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_row="4"
+        android:layout_column="0"
+        android:gravity="center"
+        android:textSize="15sp"
+        android:textColor="#000000"
+        android:layout_margin="10dp"
+        android:text="Edad" />
+
+    <EditText
+        android:id="@+id/ETEdad"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_row="4"
+        android:layout_column="1"
+        android:inputType="number"
+        android:textSize="15dp"
+        android:hint="Ingrese la edad (numeros)"/>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_row="6"
+        android:layout_column="0"
+        android:layout_columnSpan="2"
+        android:layout_gravity="center">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/RVListaCursos"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbars="vertical"/>
+
+    </LinearLayout>
+
+</GridLayout>
