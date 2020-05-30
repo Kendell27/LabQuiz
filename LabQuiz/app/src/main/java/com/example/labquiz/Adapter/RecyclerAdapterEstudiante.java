@@ -17,12 +17,10 @@ import java.util.List;
 public class RecyclerAdapterEstudiante extends RecyclerView.Adapter<RecyclerAdapterEstudiante.MyViewHolder> {
 
     private RecyclerAdapterEstudiante.RecyclerAdapterListener listener;
-    private List<Estudiante> estudiantesList;
     private List<Estudiante> estudiantesListFiltered;
 
-    public RecyclerAdapterEstudiante(RecyclerAdapterListener listener, List<Estudiante> estudiantesList, List<Estudiante> estudiantesListFiltered) {
+    public RecyclerAdapterEstudiante(RecyclerAdapterListener listener, List<Estudiante> estudiantesListFiltered) {
         this.listener = listener;
-        this.estudiantesList = estudiantesList;
         this.estudiantesListFiltered = estudiantesListFiltered;
     }
 
