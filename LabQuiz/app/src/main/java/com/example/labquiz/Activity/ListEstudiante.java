@@ -10,8 +10,14 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 
+import com.example.labquiz.Adapter.RecyclerAdapterEstudiante;
 import com.example.labquiz.Logic.Estudiante;
 import com.example.labquiz.R;
+import com.google.gson.Gson;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -26,6 +32,7 @@ public class ListEstudiante extends AppCompatActivity {
 
     private RecyclerView RVListaEstudiantes;
     private List<Estudiante> estudianteList;
+    private RecyclerAdapterEstudiante RAEstudiante;
 
 
     @Override
@@ -41,6 +48,11 @@ public class ListEstudiante extends AppCompatActivity {
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         RVListaEstudiantes.setLayoutManager(linearLayoutManager);
+
+        CargarEstudiantes c = new CargarEstudiantes();
+        c.execute();
+
+        RAEstudiante = new RecyclerAdapterEstudiante(this, estudianteList);
 
 
     }
@@ -101,8 +113,17 @@ public class ListEstudiante extends AppCompatActivity {
         @Override
         protected void onPostExecute(String s) {
 
-            Log.d("dataJSON", s.toString());
-            //Json
+            Gson g = new Gson();
+            try{
+                JSONArray myArray = new JSONArray(s);
+                estudianteList.clear();
+                for(int i = 0; i < myArray.length(); i++){
+                    estudianteList.add(g.fromJson(String.valueOf(myArray.getJSONObject(i)),Estudiante.class));
+                }
+                RAEstudiante.notifyDataSetChanged();
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
 
 
         }
