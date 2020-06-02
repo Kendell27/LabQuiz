@@ -26,9 +26,9 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ListEstudiante extends AppCompatActivity {
+public class ListEstudiante extends AppCompatActivity implements RecyclerAdapterEstudiante.RecyclerAdapterEstudianteListener {
 
-    String apiUrl = "http://localhost:8080/Servidor/";
+    String apiUrl = "localhost:8080/Servidor/";
 
     private RecyclerView RVListaEstudiantes;
     private List<Estudiante> estudianteList;
@@ -54,6 +54,20 @@ public class ListEstudiante extends AppCompatActivity {
 
         RAEstudiante = new RecyclerAdapterEstudiante(this, estudianteList);
 
+        RVListaEstudiantes.setAdapter(RAEstudiante);
+
+        RAEstudiante.notifyDataSetChanged();
+
+
+    }
+
+    @Override
+    public void onContactSelected(Estudiante est) {
+
+    }
+
+    @Override
+    public void onPointerCaptureChanged(boolean hasCapture) {
 
     }
 
@@ -77,8 +91,7 @@ public class ListEstudiante extends AppCompatActivity {
                 try {
                     url = new URL(apiUrl + "listar");
 
-                    urlConnection = (HttpURLConnection) url
-                            .openConnection();
+                    urlConnection = (HttpURLConnection) url.openConnection();
 
                     InputStream in = urlConnection.getInputStream();
 
